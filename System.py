@@ -1,5 +1,3 @@
-import random
-
 class System:
 
     def __init__(self, processes, queue, maxqueue):

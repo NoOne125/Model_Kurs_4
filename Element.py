@@ -15,10 +15,14 @@ class Element:
         self.itemBlock = None
         self.nextElementBlock = None
         self.quantBlock = 0
+        self.SumDelay = 0
+        self.N_delay=0
 
     def getDelay(self):
         result = random.random()
         result = self.delayMean - self.delayDev + 2 * result * self.delayDev
+        self.SumDelay+=result
+        self.N_delay+=1
         return result
 
     def get_state(self):
@@ -45,9 +49,7 @@ class Element:
     def outAct(self):
         self.quantity+=1
 
-    # методи для вивіду результатів
-    def printResult(self):
-        print(f'{self.name} Кількість оброблених = {str(self.quantity)}; стан = {self.state}')
-
-    def printInfo(self):
-        print(f'{self.name} Стан = {self.state}; Кількість оброблених = {self.quantity}; tnext = {self.tnext}')
+    def TheorPract(self):
+        print(f"Час {self.name}")
+        print(f"Теоретична = {self.delayMean} +- {self.delayDev}")
+        print(f"Практична = {self.SumDelay / self.N_delay}\n")

@@ -1,4 +1,3 @@
-import numpy as np
 from Element import Element
 
 class Process(Element):
@@ -15,7 +14,7 @@ class Process(Element):
 
     def outAct(self):
         super().outAct()
-        self.tnext = np.inf
+        self.tnext = float("inf")
         if(self.state==-2):
             self.state = -1
         else:
@@ -31,7 +30,7 @@ class Process(Element):
         if(self.state == 1 and self.nextElementBlock!=None):
             self.nextElementBlock.inAct()
             self.quantBlock+=1
-            self.tnext = np.inf
+            self.tnext = float("inf")
             #print(f"{self.name} отримав збій, кількість збоїв: {self.quantBlock}")
         elif(self.state == 1):
             self.state = -2
